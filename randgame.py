@@ -72,14 +72,8 @@ class randgame(cmd.Cmd):
 			random.shuffle(self.players)
 		else:
 			new_players = [random.choice(self.players)]
-			print "last: {}".format(self.last_player)
-			print "prewhile ",
-			print new_players[0]
 			while(new_players[0] == self.last_player):
 				new_players = [random.choice(self.players)]
-			print "postwhile first player: ",
-			print new_players[0]
-			
 			self.players.remove(new_players[0])
 			random.shuffle(self.players)
 			new_players += self.players
