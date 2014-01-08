@@ -6,10 +6,9 @@ class randgame(cmd.Cmd):
 	players = ["asdf", "foo"]
 	turn = 0
 	rounds = 0
-	no_two = False
 	active = False
 	settings = {"no_two" : 0, "voice" : 0}
-	last_player = ""
+
 	def do_f(self, arg):
 		print self.last_player
 
@@ -50,8 +49,6 @@ class randgame(cmd.Cmd):
 
 		self.turn += 1
 		if self.turn == len(self.players):
-			# save last player in this round
-			self.last_player = self.players[self.turn-1]
 			self.turn = 0
 			self.shuffle()
 			self.rounds += 1
@@ -71,14 +68,11 @@ class randgame(cmd.Cmd):
 		if self.settings["no_two"] == 0 :
 			random.shuffle(self.players)
 		else:
-			new_players = [random.choice(self.players)]
-			while(new_players[0] == self.last_player):
-				new_players = [random.choice(self.players)]
-			self.players.remove(new_players[0])
+			last_player = self.players.pop()
 			random.shuffle(self.players)
-			new_players += self.players
-			self.players = new_players
-				
+			self.players.insert( random.randint(1,len(self.players)), last_player)
+
+	
 	def do_addplayer(self, arg):
 		'add a player to the game'
 		if self.active == True:
