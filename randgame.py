@@ -117,7 +117,10 @@ class randgame(cmd.Cmd):
 	def do_exit(self, arg):
 		'exit the program'
 		return True
-	
+
+	def do_EOF(self,arg):
+		'exit the program'
+		return True
+
 if __name__ == '__main__':
     randgame().cmdloop()
-
