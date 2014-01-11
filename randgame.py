@@ -9,9 +9,6 @@ class randgame(cmd.Cmd):
 	active = False
 	settings = {"no_two" : 0, "voice" : 0}
 
-	def do_f(self, arg):
-		print self.last_player
-
 	def do_set(self, arg):
 		'set settings. see \"list settings\" for available options'
 		if arg == "" or len(arg.split()) != 2:
